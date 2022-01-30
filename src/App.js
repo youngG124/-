@@ -1,9 +1,10 @@
 import './App.css';
+import Subject from './components/Subject';
 
 function App() {
   return (
     <div className="App">
-      hello react!
+      <Subject></Subject>
     </div>
   );
 }
