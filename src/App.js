@@ -5,8 +5,8 @@ import InputForm from './components/InputForm';
 function App() {
   return (
     <div className="App">
-      <Subject></Subject>
-      <InputForm></InputForm>
+      <Subject />
+      <InputForm />
     </div>
   );
 }
