@@ -1,36 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const InputForm = () => {
-    const [korText, korSetText] = useState('');
-    const [enText, enSetText] = useState('');
+    const [inputs, setInputs] = useState({
+        kor: '',
+        en: ''
+    });
 
-    const korOnChange = (e) => {
-        korSetText(e.target.value);
-    };
+    const korInput = useRef();
 
-    const enOnChange = (e) => {
-        enSetText(e.target.value)
+    const { kor, en } = inputs;
+
+    const onChange = (e) => {
+        const { value, name } = e.target;
+        setInputs({
+            ...inputs,
+            [name] : value
+        });
     };
 
     const onReset = () => {
-        korSetText('');
-        enSetText('');
+        setInputs({
+            kor: '',
+            en: ''
+        })
+        korInput.current.focus();
     };
 
     
     return (
         <div>
             <p>
-                <input onChange={korOnChange} value={korText} />
+                <input name="kor" onChange={onChange} value={kor} ref={korInput}/>
             </p>
             <p>
-                <input onChange={enOnChange} value={enText} />
+                <input name="en" onChange={onChange} value={en} />
             </p>
             <div>
-                한글 입력 값: {korText}
+                한글 입력 값: {kor}
             </div>
             <div>
-                영어 입력 값: {enText}
+                영어 입력 값: {en}
             </div>
             <button onClick={onReset}>초기화</button>
             <button>제출</button>
