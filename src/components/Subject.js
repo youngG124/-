@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
 
-class Subject extends Component {
-    render() {
-      return (
-        <header>
-              hello react!
-        </header>
-      );
-    }
-  }
+const Subject = () => <div>This is word mapping web service</div>
 
 export default Subject;
