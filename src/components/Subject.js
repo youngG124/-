@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const Subject = () => <div>This is word mapping web service</div>
+const Subject = () =>
+  <div>
+    This is word mapping web service
+  </div>
 
 export default Subject;
