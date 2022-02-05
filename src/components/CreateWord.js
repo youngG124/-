@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreateWord = ({kor, en, onChange, onCreate}) => { 
+const CreateWord = ({kor, en, onChange, onCreate, onReset}) => { 
     return (
         <div>
             <p>
@@ -15,7 +15,7 @@ const CreateWord = ({kor, en, onChange, onCreate}) => {
                  name="en" 
                  placeholder='영어단어'
                  autoComplete="off"
-                 onChange={onChange} value={en} />
+                 onChange={onChange} value={en}/>
             </p>
             <div>
                 한글 입력 값: {kor}
@@ -24,6 +24,7 @@ const CreateWord = ({kor, en, onChange, onCreate}) => {
                 영어 입력 값: {en}
             </div>
             <button onClick={onCreate}>제출</button>
+            <button onClick={onReset}>비우기</button>
         </div>
     )
 }

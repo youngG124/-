@@ -1,7 +1,7 @@
 import Subject from './components/Subject';
 import CreateWord from './components/CreateWord';
 import WordList from './components/WordList';
-import React, {useState, useRef, useMemo} from 'react';
+import React, {useState, useRef, useMemo, useCallback} from 'react';
 import './App.css';
 
 const countActiveWords = (words) => {
@@ -20,13 +20,24 @@ function App() {
   const { kor, en } = inputs;
 
   // 새로 복사한 객체 뒤에 빈칸의 값을 추가
-  const onChange = (e) => {
-    const { value, name } = e.target;
+  // 변화 생길 때 마다 새로운 객체 생성
+  const onChange = useCallback(
+     e => {
+       const {name,value} = e.target;
+       setInputs({
+         ...inputs,
+         [name]: value
+       });
+     },
+     [inputs]
+  );
+
+  const onReset = useCallback(() => {
     setInputs({
-        ...inputs,
-        [name] : value
-    });
-  };
+      kor:'',
+      en:''
+    })
+  })
 
   // 단어 객체들로 이뤄진 배열 초기상태
   const [ words, setWords ] = useState([
@@ -51,42 +62,43 @@ function App() {
   ]);
 
   const nextId = useRef(4);
-  const onCreate = () => {
-    if (kor!=='' && en!=='') {
-      const word = {
-        id: nextId.current,
-        kor,
-        en
-      };
-      setWords([...words, word]);
-  
-      setInputs({
-        kor:'',
-        en:''
-      });
-      nextId.current += 1;
-    }else{
-      alert('칸을 채우세요!');
-    }
-  };
+  const onCreate = useCallback(() => {
+    const word = {
+      id: nextId.current,
+      kor,
+      en
+    };
+    setWords(words.concat(word));
+
+    setInputs({
+      kor:'',
+      en:''
+    });
+    nextId.current += 1;
+  }, [words, kor, en]);
 
   // 함수가 실행된 위치의 id
-  const onRemove = id => {
-    setWords(words.filter(word => word.id !== id));
-  };
+  const onRemove = useCallback(
+    id => {
+      setWords(words.filter(word => word.id !== id));
+    },
+    [words]
+  );
 
   // 함수가 실행된 위치의 id와 일치하는 id의 active값을 반대로,
   // 아닌경우 그대로. 3항연산자 사용 
-  const onToggle = id => {
-    setWords(
-      words.map(word =>
-        word.id === id ? { ...word, active: !word.active } : word
-      )
-    );
-  };
+  const onToggle = useCallback(
+    id => {
+      setWords(
+        words.map(word =>
+          word.id === id ? { ...word, active: !word.active} : word
+        )
+      );
+    },
+    [words]
+  );
 
   const count = useMemo(() => countActiveWords(words), [words]);
-
 
   //App 컴포넌트 랜더링
   return (
@@ -97,6 +109,7 @@ function App() {
         en = {en}
         onChange = {onChange}
         onCreate = {onCreate}
+        onReset = {onReset}
       />
       <WordList words={words} onRemove={onRemove} onToggle={onToggle}/>
       <div>number of chosen words : {count}</div>
