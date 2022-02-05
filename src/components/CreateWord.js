@@ -1,6 +1,7 @@
 import React from 'react';
 
-const CreateWord = ({kor, en, onChange, onCreate, onReset}) => { 
+const CreateWord = ({kor, en, onChange, onCreate, onReset}) => {
+    console.log('CreateWord render');
     return (
         <div>
             <p>
@@ -18,10 +19,10 @@ const CreateWord = ({kor, en, onChange, onCreate, onReset}) => {
                  onChange={onChange} value={en}/>
             </p>
             <div>
-                한글 입력 값: {kor}
+                한글 입력 값 : {kor}
             </div>
             <div>
-                영어 입력 값: {en}
+                영어 입력 값 : {en}
             </div>
             <button onClick={onCreate}>제출</button>
             <button onClick={onReset}>비우기</button>
@@ -29,4 +30,4 @@ const CreateWord = ({kor, en, onChange, onCreate, onReset}) => {
     )
 }
 
-export default CreateWord;
+export default React.memo(CreateWord);

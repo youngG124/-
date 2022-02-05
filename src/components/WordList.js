@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Word = ({ word, onRemove, onToggle }) => {
+const Word = React.memo(Word) = ({ word, onRemove, onToggle }) => {
     useEffect(() => {
         console.log('word set up');
         console.log(word);
@@ -40,4 +40,4 @@ const WordList = ({ words, onRemove, onToggle }) => {
     )
 }
 
-export default WordList;
+export default React.memo(WordList);

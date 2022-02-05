@@ -21,16 +21,13 @@ function App() {
 
   // 새로 복사한 객체 뒤에 빈칸의 값을 추가
   // 변화 생길 때 마다 새로운 객체 생성
-  const onChange = useCallback(
-     e => {
-       const {name,value} = e.target;
-       setInputs({
-         ...inputs,
-         [name]: value
-       });
-     },
-     [inputs]
-  );
+  const onChange = useCallback(e => {
+    const { name, value } = e.target;
+    setInputs(inputs => ({
+      ...inputs,
+      [name]: value
+    }));
+  }, []);
 
   const onReset = useCallback(() => {
     setInputs({
@@ -68,35 +65,29 @@ function App() {
       kor,
       en
     };
-    setWords(words.concat(word));
+    setWords(words => words.concat(word));
 
     setInputs({
       kor:'',
       en:''
     });
     nextId.current += 1;
-  }, [words, kor, en]);
+  }, [kor, en]);
 
   // 함수가 실행된 위치의 id
-  const onRemove = useCallback(
-    id => {
-      setWords(words.filter(word => word.id !== id));
-    },
-    [words]
-  );
+  const onRemove = useCallback(id => {
+    setWords(words => words.filter(word => word.id !== id));
+  }, []);
 
   // 함수가 실행된 위치의 id와 일치하는 id의 active값을 반대로,
   // 아닌경우 그대로. 3항연산자 사용 
-  const onToggle = useCallback(
-    id => {
-      setWords(
-        words.map(word =>
-          word.id === id ? { ...word, active: !word.active} : word
-        )
-      );
-    },
-    [words]
-  );
+  const onToggle = useCallback(id => {
+    setWords(words =>
+      words.map(word =>
+        word.id === id ? { ...word, active: !word.active } : word
+      )
+    );
+  }, []);
 
   const count = useMemo(() => countActiveWords(words), [words]);
 
