@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Word = ({ word, onRemove, onToggle }) => {
+    useEffect(() => {
+        console.log('word set up');
+        console.log(word);
+        return () => {
+            console.log('before word changed...');
+            console.log(word);
+        };
+    }, [word]);
+
+
     return (
         <div>
             <b

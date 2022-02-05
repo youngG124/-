@@ -1,8 +1,13 @@
 import Subject from './components/Subject';
 import CreateWord from './components/CreateWord';
 import WordList from './components/WordList';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import './App.css';
+
+const countActiveWords = (words) => {
+  console.log('counting active words...');
+  return words.filter(word => word.active).length;
+}
 
 function App() {
   // state 초기화
@@ -65,10 +70,13 @@ function App() {
     }
   };
 
+  // 함수가 실행된 위치의 id
   const onRemove = id => {
     setWords(words.filter(word => word.id !== id));
   };
 
+  // 함수가 실행된 위치의 id와 일치하는 id의 active값을 반대로,
+  // 아닌경우 그대로. 3항연산자 사용 
   const onToggle = id => {
     setWords(
       words.map(word =>
@@ -76,6 +84,9 @@ function App() {
       )
     );
   };
+
+  const count = useMemo(() => countActiveWords(words), [words]);
+
 
   //App 컴포넌트 랜더링
   return (
@@ -88,6 +99,7 @@ function App() {
         onCreate = {onCreate}
       />
       <WordList words={words} onRemove={onRemove} onToggle={onToggle}/>
+      <div>number of chosen words : {count}</div>
     </div>
   );
 }
