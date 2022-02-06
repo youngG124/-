@@ -60,18 +60,22 @@ function App() {
 
   const nextId = useRef(4);
   const onCreate = useCallback(() => {
-    const word = {
-      id: nextId.current,
-      kor,
-      en
-    };
-    setWords(words => words.concat(word));
-
-    setInputs({
-      kor:'',
-      en:''
-    });
-    nextId.current += 1;
+    if (kor!=='' && en!=='') {
+      const word = {
+        id: nextId.current,
+        kor,
+        en
+      };
+      setWords(words => words.concat(word));
+  
+      setInputs({
+        kor:'',
+        en:''
+      });
+      nextId.current += 1;
+    } else {
+      alert('빈 칸을 채우시오');
+    }   
   }, [kor, en]);
 
   // 함수가 실행된 위치의 id

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Word = React.memo(Word) = ({ word, onRemove, onToggle }) => {
+const Word = ({ word, onRemove, onToggle }) => {
     useEffect(() => {
         console.log('word set up');
         console.log(word);
