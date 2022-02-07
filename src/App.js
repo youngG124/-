@@ -95,9 +95,17 @@ function App() {
 
   const count = useMemo(() => countActiveWords(words), [words]);
 
-  const onSelectedRemove = useCallback(id => {
+  const onSelectedRemove = useCallback(() => {
     setWords(words => words.filter(word => word.active === false));
   }, []);
+
+  const onRemoveAll = useCallback((id) => {
+    setWords(words => words.filter(word => {
+      if (typeof variable !== 'undefined') {
+        word = '';
+      }
+    }));
+  }, [])
 
   //App 컴포넌트 랜더링
   return (
@@ -111,8 +119,9 @@ function App() {
         onReset = {onReset}
       />
       <WordList words={words} onRemove={onRemove} onToggle={onToggle}/>
-      <div>number of chosen words : {count}</div>
-      <button onClick = {onSelectedRemove}>선택된 단어들 일괄삭제</button>
+      <div>number of selected words : {count}</div>
+      <button onClick = {onSelectedRemove}>remove selected words</button>
+      <button onClick = {onRemoveAll}>remove all words</button>
     </div>
   );
 }
