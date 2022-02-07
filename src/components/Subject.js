@@ -4,7 +4,7 @@ const Subject = () => {
 
   return (
     <div>
-      This is word mapping web service
+      웹 영어 단어장
     </div>
   )
 }

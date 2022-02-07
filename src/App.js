@@ -52,8 +52,8 @@ function App() {
     },
     {
       id: 3,
-      kor: '관리하다',
-      en: 'manage',
+      kor: '시간 엄수',
+      en: 'punctuality',
       active:false
     }
   ]);
@@ -95,6 +95,10 @@ function App() {
 
   const count = useMemo(() => countActiveWords(words), [words]);
 
+  const onSelectedRemove = useCallback(id => {
+    setWords(words => words.filter(word => word.active === false));
+  }, []);
+
   //App 컴포넌트 랜더링
   return (
     <div className="App">
@@ -108,6 +112,7 @@ function App() {
       />
       <WordList words={words} onRemove={onRemove} onToggle={onToggle}/>
       <div>number of chosen words : {count}</div>
+      <button onClick = {onSelectedRemove}>선택된 단어들 일괄삭제</button>
     </div>
   );
 }

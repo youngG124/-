@@ -24,8 +24,10 @@ const CreateWord = ({kor, en, onChange, onCreate, onReset}) => {
             <div>
                 영어 입력 값 : {en}
             </div>
-            <button onClick={onCreate}>제출</button>
-            <button onClick={onReset}>비우기</button>
+            <div>
+                <button onClick={onCreate}>제출</button>
+                <button onClick={onReset}>비우기</button>
+            </div>            
         </div>
     )
 }
