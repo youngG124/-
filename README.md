@@ -2,6 +2,8 @@
 
 ![image](https://user-images.githubusercontent.com/84854577/153035883-503024e7-f6b8-44e5-85bb-8961384b308b.png)
 
+- 단어 입력
+
 구현 완료 : 단어 입력, 개별 단어 삭제, 단어 선택, 선택 단어 삭제, 전체 단어 삭제
 (React.memo 사용방법 공부중)
 
