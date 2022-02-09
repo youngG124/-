@@ -99,9 +99,9 @@ function App() {
     setWords(words => words.filter(word => word.active === false));
   }, []);
 
-  const onRemoveAll = useCallback((id) => {
+  const onRemoveAll = useCallback(() => {
     setWords(words => words.filter(word => {
-      if (typeof variable !== 'undefined') {
+      if (typeof word !== 'undefined') {
         word = '';
       }
     }));
