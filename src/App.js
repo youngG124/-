@@ -83,6 +83,14 @@ function App() {
     setWords(words => words.filter(word => word.id !== id));
   }, []);
 
+  // function callback(word) {
+  //   if(word.id !== id) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
   // 함수가 실행된 위치의 id와 일치하는 id의 active값을 반대로,
   // 아닌경우 그대로. 3항연산자 사용 
   const onToggle = useCallback(id => {
