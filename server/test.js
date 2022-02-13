@@ -1,19 +1,26 @@
-const arr = [];
+const arr = [1];
 
-console.time('Array Performance Test');
+arr.length = 3;
 
-for (let i = 0; i <10000000; i++) {
-    arr[i] = i;
-}
+console.log(arr);
 
-console.timeEnd('Array Performance Test');
+arr.push(4);
 
-const obj = {};
+console.log(arr);
 
-console.time('Object Performance Test');
+arr.push(3);
 
-for (let i = 0; i< 10000000; i++) {
-    obj[i] = i;
-}
+console.log(arr);
 
-console.timeEnd('Object Performance Test');
+arr[2] = 3;
+
+console.log(arr);
+
+arr[1] = 6;
+
+console.log(arr);
+
+const sparse = [, 2, , 4];
+console.log(sparse.length);
+console.log(sparse);
+console.log(Object.getOwnPropertyDescriptors(sparse));
