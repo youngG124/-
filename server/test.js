@@ -1,7 +1,19 @@
-const arr = ['apple', 'banana', 'orange'];
+const arr = [];
 
-for (let i = 0; i < arr.length; i++ ) {
-    console.log(arr[i]);
+console.time('Array Performance Test');
+
+for (let i = 0; i <10000000; i++) {
+    arr[i] = i;
 }
 
-console.log('type of arr is ' + typeof arr);
+console.timeEnd('Array Performance Test');
+
+const obj = {};
+
+console.time('Object Performance Test');
+
+for (let i = 0; i< 10000000; i++) {
+    obj[i] = i;
+}
+
+console.timeEnd('Object Performance Test');
