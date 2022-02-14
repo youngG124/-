@@ -1,6 +1,7 @@
 import Subject from './components/Subject';
 import CreateWord from './components/CreateWord';
 import WordList from './components/WordList';
+import EnglishList from './components/EnglishList';
 import React, {useState, useRef, useMemo, useCallback} from 'react';
 import './App.css';
 
@@ -130,6 +131,8 @@ function App() {
       <div>number of selected words : {count}</div>
       <button onClick = {onSelectedRemove}>remove selected words</button>
       <button onClick = {onRemoveAll}>remove all words</button>
+
+      <EnglishList words={words}/>
     </div>
   );
 }
